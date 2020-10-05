@@ -103,6 +103,72 @@ int findMax(node*tree)
     return tree->data;
 }
 
+node*successor(node*tree,int node)
+{
+	struct bintree* choice;
+	if(tree==NULL)
+	return NULL;
+	if(node<tree->data)
+	{choice= successor(tree->left,node);
+	if(choice==NULL)
+		{
+			return tree;
+		}
+	else
+		return choice;
+	}
+	else if(node>tree->data)
+	{return successor(tree->right,node);
+	}
+	else if(tree->data==node)
+	{
+	if(tree->right!=NULL)
+	{
+		tree=tree->right;
+		while(tree->left!=NULL)
+			tree=tree->left;
+		return tree;
+	}
+	else
+	{
+		return NULL;
+	}
+	}
+}
+
+node*predecessor(node*tree,int node)
+{	
+	struct bintree* choice;
+	if(tree==NULL)
+	return NULL;
+	if(node<tree->data)
+	{return predecessor(tree->left,node);
+	}
+	else if(node>tree->data)
+	{choice=predecessor(tree->right,node);
+	if(choice==NULL)
+		{
+			return tree;
+		}
+	else
+		return choice;
+	}
+	else if(tree->data==node)
+	{
+	if(tree->left!=NULL)
+	{
+		tree=tree->left;
+		while(tree->right!=NULL)
+			tree=tree->right;
+		return tree;
+	}
+	else
+	{
+		return NULL;
+	}
+	}
+}
+
 int level(node*tree, int node)
 {
     if(tree==NULL)  //NOT FOUND
