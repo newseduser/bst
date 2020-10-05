@@ -1,16 +1,18 @@
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
+#include<limits.h>
 typedef struct bintree node;
 struct bintree
 {
-    int data;
-    node*left,*right;
+    int data;	// Value of the node
+    node*left,*right;	// Left and right nodes or subtrees
 };
 
+// To insert a new element into the BST
 node* insert(node*tree, int element)
 {
-    //CREATE ELEMENT
+    //Create a new node and populate its variables
     node*new = (node*)malloc(sizeof(node));
     new->data = element;
     new->left=NULL;
@@ -22,7 +24,7 @@ node* insert(node*tree, int element)
     else
     {
         //FIND INSERTION POSITION
-        
+        // Traversing until NULL and maintaining BST property
         while(trav!=NULL)
         {
             if(element<=trav->data)
@@ -36,6 +38,7 @@ node* insert(node*tree, int element)
                 trav=trav->right;
             }
         }
+	// Correct position found, insert
         if(element<=ins->data)
             ins->left=new;
         else
@@ -76,7 +79,8 @@ node* search(node*tree,int element)
     {
         if(tree->data==element)
         {
-            return tree;
+            	// Found the element
+		return tree;
         }
         else if(element<tree->data)
             tree=tree->left;
@@ -89,7 +93,7 @@ node* search(node*tree,int element)
 int findMin(node*tree)
 {
     if(tree==NULL)
-        return -9999;
+        return INT_MIN;
     while(tree->left!=NULL)
         tree=tree->left;
     return tree->data;
@@ -97,7 +101,7 @@ int findMin(node*tree)
 int findMax(node*tree)
 {
     if(tree==NULL)
-        return -9999;
+        return INT_MIN;
     while(tree->right!=NULL)
         tree=tree->right;
     return tree->data;
