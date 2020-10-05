@@ -8,41 +8,30 @@ struct bintree
     node*left,*right;
 };
 
-node* insert(node*tree, int element)
+
+node* pareninsert(node*tree)
 {
-    //CREATE ELEMENT
-    node*new = (node*)malloc(sizeof(node));
-    new->data = element;
-    new->left=NULL;
-    new->right=NULL;
-    node*trav=tree,*ins=tree;
-    //EMPTY TREE CASE
-    if(tree==NULL)
-        tree=new;
-    else
+    //CREATE CHILD
+    int el;char ch=getchar();
+    if(ch=='(')
     {
-        //FIND INSERTION POSITION
-        
-        while(trav!=NULL)
+        if(scanf("%d ",&el)==1)
         {
-            if(element<=trav->data)
-            {
-                ins=trav;
-                trav=trav->left;
-            }
-            else
-            {
-                ins=trav;
-                trav=trav->right;
-            }
+            node*new = (node*)malloc(sizeof(node));
+            new->data = el;
+            new->left=pareninsert(new);
+            new->right=pareninsert(new);
+            getchar();getchar();
+            return new;
         }
-        if(element<=ins->data)
-            ins->left=new;
         else
-            ins->right=new;
+        {
+            getchar();getchar();
+            return NULL;
+        }
     }
-    return tree;
 }
+
 
 void inorder(node*tree) //Left,print,right
 {
