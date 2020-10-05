@@ -169,6 +169,20 @@ node*predecessor(node*tree,int node)
 	}
 }
 
+void paren(node*tree)
+{
+    printf("( ");
+    if(tree!=NULL)
+    {
+        printf("%d ",tree->data);
+        paren(tree->left);
+        paren(tree->right);
+        printf(") ");
+    }
+    else
+        printf(") ");
+}
+
 int level(node*tree, int node)
 {
     if(tree==NULL)  //NOT FOUND
@@ -304,6 +318,11 @@ int main()
            postorder(tree);
            printf("\n");
        }
+	else if(strcmp(sel,"prep")==0)
+	{
+		prep(tree);
+		printf("\n");
+	}
        else if(strcmp(sel,"stop")==0)
        {return 0;}
        else if(strcmp(sel,"levl")==0)
