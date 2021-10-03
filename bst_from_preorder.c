@@ -44,6 +44,30 @@ node* insert(node*tree, int element)
     return tree;
 }
 
+void inorder(node*tree) //Left,print,right
+{
+    if(tree==NULL)
+        return;
+    inorder(tree->left);
+    printf("%d ",tree->data);
+    inorder(tree->right);
+}
+void postorder(node*tree)   //Left,right,print
+{
+    if(tree==NULL)
+        return;
+    postorder(tree->left);
+    postorder(tree->right);
+    printf("%d ",tree->data);
+}
+void preorder(node*tree)    //Print,left,right
+{
+    if(tree==NULL)
+        return;
+    printf("%d ",tree->data);
+    preorder(tree->left);
+    preorder(tree->right);
+}
 
 //*********************** Q2 **************************************
 void paren(node*tree)
