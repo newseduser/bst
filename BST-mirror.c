@@ -63,10 +63,12 @@ node* search(node*tree,int element)
 {
     while(tree!=NULL)
     {
+        // If search element is found, return the node
         if(tree->data==element)
         {
             return tree;
         }
+        // If required element less than value of current node->can be present only in left subtree
         else if(element<tree->data)
             tree=tree->left;
         else
@@ -74,11 +76,11 @@ node* search(node*tree,int element)
     }
     return NULL;
 }
-
+const int MIN=-999999;
 int findMin(node*tree)
 {
     if(tree==NULL)
-        return -9999;
+        return MIN;
     while(tree->left!=NULL)
         tree=tree->left;
     return tree->data;
@@ -86,7 +88,7 @@ int findMin(node*tree)
 int findMax(node*tree)
 {
     if(tree==NULL)
-        return -9999;
+        return MIN;
     while(tree->right!=NULL)
         tree=tree->right;
     return tree->data;
